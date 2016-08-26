@@ -1,0 +1,4 @@
+include 'dmc-spec'
+include 'dmc-mongo'
+include 'dmc-core'
+

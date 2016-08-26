@@ -1,0 +1,146 @@
+[
+  {
+    "name": "TransactionsRuleWithRefData",
+    "expression": "Matcher.event('ACCOUNTS').set('BD').fromHeader('date').and().event('PRODUCTS').set('Premise').fromHeader('premise').set('BD').fromHeader('date').and().event('TRANSACTIONS').set('Premise').fromHeader('premise').set('BD').fromHeader('date').groupBy('BD')",
+    "callbacks": [
+      {
+        "name": "TransactionsRuleWithRefData.Callback",
+        "url": "http://localhost:8080"
+      }
+    ]
+  },
+  {
+    "name": "TransactionsRuleWithRefDataWithConstraints",
+    "expression": "Matcher.event('ACCOUNTS').set('Premise').fromHeader('premise').set('BD').fromHeader('date').and().event('PRODUCTS').set('Premise').asConstant('PC2').set('BD').fromHeader('date').and().event('TRANSACTIONS').set('Premise').fromHeader('premise').set('BD').fromHeader('date').and().is('TRANSACTIONS','Premise').eq('PRODUCTS','Premise').and().is('TRANSACTIONS','Premise').eq('ACCOUNTS','Premise').and().is('TRANSACTIONS','BD').eq('ACCOUNTS','BD').and().is('TRANSACTIONS','BD').eq('ACCOUNTS','BD').groupBy({'BD','Premise'})",
+    "callbacks": [
+      {
+        "name": "TransactionsRuleWithRefDataWithConstraints.Callback",
+        "url": "http://localhost:8080"
+      }
+    ]
+  },
+  {
+    "name": "ReferenceDataRule",
+    "expression": "Matcher.event('ACCOUNTS').set('BD').fromHeader('date').and().event('PRODUCTS').set('BD').fromHeader('date').groupBy('BD')",
+    "callbacks": [
+      {
+        "name": "ReferenceDataRule.Callback",
+        "url": "http://localhost:8080"
+      }
+    ]
+  },
+  {
+    "name": "ReferenceDataOrCriteria",
+    "expression": "Matcher.event('ACCOUNTS').set('BD').fromHeader('date').or().event('PRODUCTS').set('BD').fromHeader('date').groupBy('BD')",
+    "callbacks": [
+      {
+        "name": "ReferenceDataOrCriteria.Callback",
+        "url": "http://localhost:8080"
+      }
+    ]
+  },
+  {
+    "name": "AccountsRule",
+    "expression": "Matcher.event('ACCOUNTS').set('BD').fromHeader('date').groupBy('BD')",
+    "callbacks": [
+      {
+        "name": "AccountsRule.Callback",
+        "url": "http://localhost:8080"
+      }
+    ]
+  },
+  {
+    "name": "ProductsRule",
+    "expression": "Matcher.event('PRODUCTS').set('BD').fromHeader('date').groupBy('BD')",
+    "callbacks": [
+      {
+        "name": "ProductsRule.Callback",
+        "url": "http://localhost:8080"
+      }
+    ]
+  },
+  {
+    "name": "ACCOUNTS",
+    "owner": "test",
+    "extRef": "ACCOUNTS:Yesterday",
+    "qualifier": {
+      "date": "Yesterday"
+    },
+    "occuredAt": 1469278691887
+  },
+  {
+    "name": "TRANSACTIONS",
+    "owner": "test",
+    "extRef": "TRANSACTIONS:Yesterday",
+    "qualifier": {
+      "date": "Yesterday"
+    },
+    "occuredAt": 1469278692070
+  },
+  {
+    "name": "PRODUCTS",
+    "owner": "test",
+    "extRef": "PRODUCTS:Yesterday",
+    "qualifier": {
+      "date": "Yesterday"
+    },
+    "occuredAt": 1469278692119
+  },
+  {
+    "name": "ACCOUNTS",
+    "owner": "test",
+    "extRef": "ACCOUNTS:Today",
+    "qualifier": {
+      "date": "Today"
+    },
+    "occuredAt": 1469278692145
+  },
+  {
+    "name": "TRANSACTIONS",
+    "owner": "test",
+    "extRef": "TRANSACTIONS:Today",
+    "qualifier": {
+      "date": "Today"
+    },
+    "occuredAt": 1469278692174
+  },
+  {
+    "name": "PRODUCTS",
+    "owner": "test",
+    "extRef": "PRODUCTS:Today",
+    "qualifier": {
+      "date": "Today"
+    },
+    "occuredAt": 1469278692196
+  },
+  {
+    "name": "ACCOUNTS",
+    "owner": "test",
+    "extRef": "ACCOUNTS:Tomorrow",
+    "qualifier": {
+      "date": "Tomorrow",
+      "premise": "PC2"
+    },
+    "occuredAt": 1469278692221
+  },
+  {
+    "name": "TRANSACTIONS",
+    "owner": "test",
+    "extRef": "TRANSACTIONS:Tomorrow",
+    "qualifier": {
+      "date": "Tomorrow",
+      "premise": "PC2"
+    },
+    "occuredAt": 1469278692240
+  },
+  {
+    "name": "PRODUCTS",
+    "owner": "test",
+    "extRef": "PRODUCTS:Tomorrow",
+    "qualifier": {
+      "date": "Tomorrow",
+      "premise": "PC2"
+    },
+    "occuredAt": 1469278692273
+  }
+]

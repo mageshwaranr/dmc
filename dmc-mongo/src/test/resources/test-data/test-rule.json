@@ -1,0 +1,24 @@
+{
+  "dMRuleDefinition" : [
+    {
+      "_class" : "com.gs.",
+      "id" : "unitTestFindRuleByName:0",
+      "versionNo" : 0 ,
+      "expression" : "Matcher.entity('Account').and().entity('PRODUCT')",
+      "name" : "unitTestFindRuleByName",
+      "status" : "ACTIVE",
+      "callbacks" : [
+        {
+          "name" : "Callback1",
+          "url" : "http://localhost:9000/notify",
+          "status" : "ACTIVE",
+          "data" : null
+        }
+      ],
+      "lastUpdatedBy" : "DEPENDENCY_SERVICE",
+      "lastUpdatedOn" : { "$date" : "2016-07-05T10:09:15.210Z"},
+      "createdBy" : "DEPENDENCY_SERVICE",
+      "createdOn" : { "$date" : "2016-07-03T10:09:15.210Z"}
+    }
+  ]
+}
