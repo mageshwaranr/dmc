@@ -1,7 +1,7 @@
 package com.thoongatechies.dmc.core.dao;
 
-import com.thoongatechies.require.dm.entity.CallbackDefinitionEntity;
-import com.thoongatechies.require.dm.entity.RuleDefinitionEntity;
+import com.thoongatechies.dmc.core.entity.CallbackDefinitionEntity;
+import com.thoongatechies.dmc.core.entity.RuleDefinitionEntity;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,6 +1,6 @@
 package com.thoongatechies.dmc.spec.service;
 
-import com.thoongatechies.dmc.spec.core.Spec;
+import com.thoongatechies.dmc.spec.def.Spec;
 import com.thoongatechies.dmc.spec.vo.SpecExecutionState;
 import com.thoongatechies.dmc.spec.vo.Trigger;
 import com.thoongatechies.dmc.spec.vo.TriggerGroup;

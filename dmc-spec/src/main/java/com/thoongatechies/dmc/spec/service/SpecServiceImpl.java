@@ -1,8 +1,8 @@
 package com.thoongatechies.dmc.spec.service;
 
-import com.thoongatechies.dmc.spec.core.ResponseContextCreator;
-import com.thoongatechies.dmc.spec.core.Spec;
-import com.thoongatechies.dmc.spec.core.SpecGenerator;
+import com.thoongatechies.dmc.spec.def.ResponseContextCreator;
+import com.thoongatechies.dmc.spec.def.Spec;
+import com.thoongatechies.dmc.spec.def.SpecGenerator;
 import com.thoongatechies.dmc.spec.vo.*;
 import org.mvel2.MVEL;
 import org.slf4j.Logger;

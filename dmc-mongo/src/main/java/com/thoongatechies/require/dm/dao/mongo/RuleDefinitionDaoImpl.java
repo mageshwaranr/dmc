@@ -1,7 +1,8 @@
 package com.thoongatechies.require.dm.dao.mongo;
 
-import com.thoongatechies.require.dm.entity.DMCallbackDefinition;
-import com.thoongatechies.require.dm.entity.DMRuleDefinition;
+import com.thoongatechies.require.dm.dao.RuleDefinitionDao;
+import com.thoongatechies.require.dm.entity.CallbackDefinitionEntity;
+import com.thoongatechies.require.dm.entity.RuleDefinitionEntity;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,14 +16,14 @@ import static com.thoongatechies.require.dm.entity.Constants.*;
  * Created by mages_000 on 6/3/2016.
  */
 @Named
-public class RuleDefinitionDaoImpl implements com.thoongatechies.require.dm.dao.RuleDefinitionRepo {
+public class RuleDefinitionDaoImpl implements RuleDefinitionDao {
 
     @Inject
     private RuleDefinitionRepository repo;
 
     @Override
-    public DMRuleDefinition create(DMRuleDefinition ruleDef) {
-        Optional<DMRuleDefinition> existing = findLatestByName(ruleDef.getName());
+    public RuleDefinitionEntity create(RuleDefinitionEntity ruleDef) {
+        Optional<RuleDefinitionEntity> existing = findLatestByName(ruleDef.getName());
         ruleDef.setVersionNo(1L);
         existing.ifPresent(oldDef -> {
             if (RULE_STATUS_ACTIVE.equals(oldDef.getStatus())) {
@@ -39,7 +40,7 @@ public class RuleDefinitionDaoImpl implements com.thoongatechies.require.dm.dao.
     }
 
     @Override
-    public DMCallbackDefinition addCallbackToRule(DMCallbackDefinition newCallback, DMRuleDefinition ruleDef, String senderName) {
+    public CallbackDefinitionEntity addCallbackToRule(CallbackDefinitionEntity newCallback, RuleDefinitionEntity ruleDef, String senderName) {
         boolean alreadyPresent = ruleDef.getCallbacks().stream().anyMatch(existing -> existing.getName().equals(newCallback.getName()));
         if (alreadyPresent) {
             throw new RuntimeException("Callback name is already present. Please try with different name");
@@ -53,8 +54,8 @@ public class RuleDefinitionDaoImpl implements com.thoongatechies.require.dm.dao.
     }
 
     @Override
-    public Optional<DMRuleDefinition> deleteRuleById(String ruleId, String sender){
-        Optional<DMRuleDefinition> ruleDefinition = findById(ruleId);
+    public Optional<RuleDefinitionEntity> deleteRuleById(String ruleId, String sender){
+        Optional<RuleDefinitionEntity> ruleDefinition = findById(ruleId);
         ruleDefinition.ifPresent(toBeDeleted -> {
             toBeDeleted.setStatus(RULE_STATUS_INACTIVE);
             toBeDeleted.setLastUpdatedOn(new Date());
@@ -64,8 +65,8 @@ public class RuleDefinitionDaoImpl implements com.thoongatechies.require.dm.dao.
         return ruleDefinition;
     }
     @Override
-    public Optional<DMRuleDefinition> deleteRuleByName(String name, String sender){
-        Optional<DMRuleDefinition> ruleDefinition = findLatestByName(name);
+    public Optional<RuleDefinitionEntity> deleteRuleByName(String name, String sender){
+        Optional<RuleDefinitionEntity> ruleDefinition = findLatestByName(name);
         ruleDefinition.ifPresent(toBeDeleted -> {
             toBeDeleted.setStatus(RULE_STATUS_INACTIVE);
             toBeDeleted.setLastUpdatedOn(new Date());
@@ -77,7 +78,7 @@ public class RuleDefinitionDaoImpl implements com.thoongatechies.require.dm.dao.
 
     @Override
     public void deleteCallbackByRuleIdAndCallbackName(String ruleId, String callbackName, String sender){
-        Optional<DMRuleDefinition> ruleDefinition = findById(ruleId);
+        Optional<RuleDefinitionEntity> ruleDefinition = findById(ruleId);
         ruleDefinition.ifPresent(rule -> rule.getCallbacks().stream()
                 .filter( existing -> existing.getName().equals(callbackName))
                 .findFirst()
@@ -90,40 +91,40 @@ public class RuleDefinitionDaoImpl implements com.thoongatechies.require.dm.dao.
     }
 
     @Override
-    public List<DMRuleDefinition> findByStatus(String status) {
-        List<DMRuleDefinition> rules = repo.ruleDefinitionByStatus(status, SORT_BY_VERSION_NO);
+    public List<RuleDefinitionEntity> findByStatus(String status) {
+        List<RuleDefinitionEntity> rules = repo.ruleDefinitionByStatus(status, SORT_BY_VERSION_NO);
         return checkAndGetNonDuplicates(rules);
     }
 
     @Override
-    public Optional<DMRuleDefinition> findLatestByName(String name) {
-        List<DMRuleDefinition> rules = findByName(name);
+    public Optional<RuleDefinitionEntity> findLatestByName(String name) {
+        List<RuleDefinitionEntity> rules = findByName(name);
         return rules.stream().findFirst();
     }
 
     @Override
-    public Optional<DMRuleDefinition> findById(String id) {
-        List<DMRuleDefinition> rules = repo.ruleDefinitionById(id, FETCH_LATEST_ONE_BY_VERSION_NO);
+    public Optional<RuleDefinitionEntity> findById(String id) {
+        List<RuleDefinitionEntity> rules = repo.ruleDefinitionById(id, FETCH_LATEST_ONE_BY_VERSION_NO);
         return rules.stream().findFirst();
     }
 
     @Override
-    public List<DMRuleDefinition> findByName(String name) {
+    public List<RuleDefinitionEntity> findByName(String name) {
         return repo.ruleDefinitionByName(name, FETCH_LATEST_ONE_BY_VERSION_NO);
     }
 
     @Override
-    public List<DMRuleDefinition> findByNameAndStatus(String name, String status) {
+    public List<RuleDefinitionEntity> findByNameAndStatus(String name, String status) {
         return repo.ruleDefinitionByNameAndStatus(name, status, FETCH_LATEST_ONE_BY_VERSION_NO);
     }
 
     @Override
-    public Optional<DMRuleDefinition> findLatestByNameAndStatus(String name, String status) {
+    public Optional<RuleDefinitionEntity> findLatestByNameAndStatus(String name, String status) {
         return repo.ruleDefinitionByNameAndStatus(name, status, FETCH_LATEST_ONE_BY_VERSION_NO).stream().findFirst();
     }
 
 
-    private List<DMRuleDefinition> checkAndGetNonDuplicates(List<DMRuleDefinition> rules) {
+    private List<RuleDefinitionEntity> checkAndGetNonDuplicates(List<RuleDefinitionEntity> rules) {
         return new ArrayList<>(new HashSet<>(rules));
     }
 }

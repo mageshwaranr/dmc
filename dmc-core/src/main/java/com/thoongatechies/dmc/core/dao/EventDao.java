@@ -1,7 +1,7 @@
 package com.thoongatechies.dmc.core.dao;
 
-import com.thoongatechies.require.dm.entity.EventEntity;
-import com.thoongatechies.require.dm.entity.EventInstanceEntity;
+import com.thoongatechies.dmc.core.entity.EventEntity;
+import com.thoongatechies.dmc.core.entity.EventInstanceEntity;
 
 import java.util.Collection;
 import java.util.List;

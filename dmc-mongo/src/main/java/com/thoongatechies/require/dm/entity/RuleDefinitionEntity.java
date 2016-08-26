@@ -31,7 +31,7 @@ public class RuleDefinitionEntity {
     @CreatedDate
     private Date createdOn;
 
-    private List<DMCallbackDefinition> callbacks;
+    private List<CallbackDefinitionEntity> callbacks;
 
     public Long getVersionNo() {
         return versionNo;
@@ -97,11 +97,11 @@ public class RuleDefinitionEntity {
         this.createdOn = createdOn;
     }
 
-    public List<DMCallbackDefinition> getCallbacks() {
+    public List<CallbackDefinitionEntity> getCallbacks() {
         return callbacks;
     }
 
-    public void setCallbacks(List<DMCallbackDefinition> callbacks) {
+    public void setCallbacks(List<CallbackDefinitionEntity> callbacks) {
         this.callbacks = callbacks;
     }
 

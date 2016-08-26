@@ -1,7 +1,6 @@
 package com.thoongatechies.dmc.core.entity;
 
 import com.thoongatechies.dmc.spec.vo.Trigger;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Collection;
 import java.util.Date;
@@ -10,7 +9,7 @@ import java.util.Map;
 /**
  * Created by mages_000 on 6/1/2016.
  */
-@Document(collection="CallbackData")
+//@Document(collection="CallbackData")
 public class CallbackDataEntity {
 
     public static final String ID_COLUMN="_id", STATUS_COLUMN="status", EVENTS_COLUMN="events",

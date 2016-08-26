@@ -1,33 +1,30 @@
 package com.thoongatechies.dmc.core.entity;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by mages_000 on 6/1/2016.
  */
-@Document(collection="RuleDefinition")
+//@Document(collection="RuleDefinition")
 public class RuleDefinitionEntity {
 
-    @Id
+//    @Id
     private String id;
 
     private Long versionNo;
 
-    @NotNull(message="expression can not be null")
+//    @NotNull(message="expression can not be null")
     private String expression,name;
 
     private String status;
-    @LastModifiedBy
+//    @LastModifiedBy
     private String lastUpdatedBy;
-    @LastModifiedDate
+//    @LastModifiedDate
     private Date lastUpdatedOn;
-    @CreatedBy
+//    @CreatedBy
     private String createdBy;
-    @CreatedDate
+//    @CreatedDate
     private Date createdOn;
 
     private List<CallbackDefinitionEntity> callbacks;

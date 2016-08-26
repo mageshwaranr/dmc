@@ -1,6 +1,6 @@
 package com.thoongatechies.require.dm.vo;
 
-import com.thoongatechies.require.dm.data.Sender;
+import com.thoongatechies.require.dm.entity.Sender;
 
 import java.util.Map;
 import java.util.Set;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class CallbackRequest {
 
     private Sender sender;
-    private Rule rule;
+    private RuleDefinition rule;
     private Set<Event> events;
     private Map<String,Object> data, qualifier;
 
@@ -23,11 +23,11 @@ public class CallbackRequest {
         this.sender = sender;
     }
 
-    public Rule getRule() {
+    public RuleDefinition getRule() {
         return rule;
     }
 
-    public void setRule(Rule rule) {
+    public void setRule(RuleDefinition rule) {
         this.rule = rule;
     }
 

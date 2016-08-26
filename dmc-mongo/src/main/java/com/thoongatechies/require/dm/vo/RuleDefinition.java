@@ -16,7 +16,7 @@ public class RuleDefinition {
 
     private String name, expression, id, status, createdBy, lastUpdatedBy;
     private Date createdOn, lastUpdatedOn;
-    private List<Callback> callbacks;
+    private List<CallbackDefinition> callbacks;
     private long versionNo;
 
     public RuleDefinition(String name, String expression) {
@@ -56,7 +56,7 @@ public class RuleDefinition {
         return lastUpdatedOn;
     }
 
-    public List<Callback> getCallbacks() {
+    public List<CallbackDefinition> getCallbacks() {
         return callbacks;
     }
 
@@ -77,7 +77,7 @@ public class RuleDefinition {
         private String lastUpdatedBy;
         private Date createdOn;
         private Date lastUpdatedOn;
-        private List<Callback> callbacks;
+        private List<CallbackDefinition> callbacks;
         private long versionNo;
 
         public RuleBuilder withName(String name) {
@@ -120,7 +120,7 @@ public class RuleDefinition {
             return this;
         }
 
-        public RuleBuilder withCallbacks(List<Callback> callbacks) {
+        public RuleBuilder withCallbacks(List<CallbackDefinition> callbacks) {
             this.callbacks = callbacks;
             return this;
         }

@@ -1,7 +1,6 @@
 package com.thoongatechies.dmc.core.entity;
 
 import com.thoongatechies.dmc.spec.vo.Trigger;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.Map;
@@ -9,7 +8,7 @@ import java.util.Map;
 /**
  * Created by mages_000 on 6/1/2016.
  */
-@Document(collection="Event")
+//@Document(collection="Event")
 public class EventEntity extends Trigger {
 
     public static final String STATUS_COLUMN="status" , ID_COLUMN="_id", EXT_REF_COLUMN = "extRef";

@@ -1,19 +1,16 @@
 package com.thoongatechies.dmc.core.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.Date;
 
 /**
  * Created by mages_000 on 6/1/2016.
  */
-@Document(collection="EventInstance")
+//@Document(collectionion="EventInstance")
 public class EventInstanceEntity {
 
     public static final String STATUS_COLUMN = "status",ID_COLUMN="_id";
 
-    @Id
+//    @Id
     private String id;
 
     private long eventId;

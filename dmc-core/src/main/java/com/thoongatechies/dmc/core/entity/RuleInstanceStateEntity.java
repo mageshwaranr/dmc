@@ -1,14 +1,13 @@
 package com.thoongatechies.dmc.core.entity;
 
 import com.thoongatechies.dmc.spec.vo.SpecExecutionState;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
 /**
  * Created by mages_000 on 6/1/2016.
  */
-@Document(collection="RuleInstanceState")
+//@Document(collection="RuleInstanceState")
 public class RuleInstanceStateEntity extends SpecExecutionState {
     public static final String ID_COLUMN = "_id";
 

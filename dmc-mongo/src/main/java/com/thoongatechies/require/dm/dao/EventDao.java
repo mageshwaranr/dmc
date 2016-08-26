@@ -1,7 +1,7 @@
 package com.thoongatechies.require.dm.dao;
 
-import com.thoongatechies.require.dm.entity.DMEvent;
-import com.thoongatechies.require.dm.entity.DMEventInstance;
+import com.thoongatechies.require.dm.entity.EventEntity;
+import com.thoongatechies.require.dm.entity.EventInstanceEntity;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,19 +11,19 @@ import java.util.List;
  */
 public interface EventDao {
 
-    void newEvent(DMEvent evt);
-    void newEventInstance(DMEventInstance ei);
+    void newEvent(EventEntity evt);
+    void newEventInstance(EventInstanceEntity ei);
 
-    void setProcessed(DMEvent evt);
-    void setProcessed(DMEventInstance ei);
+    void setProcessed(EventEntity evt);
+    void setProcessed(EventInstanceEntity ei);
 
-    List<DMEvent> eventToBeProcessed();
-    List<DMEventInstance> instancesToBeProcessed();
+    List<EventEntity> eventToBeProcessed();
+    List<EventInstanceEntity> instancesToBeProcessed();
 
-    DMEvent eventById(long id);
-    DMEventInstance instanceById(String id);
+    EventEntity eventById(long id);
+    EventInstanceEntity instanceById(String id);
 
-    List<DMEvent> eventByExtRef(String extRef);
-    List<DMEvent> minimalEventDataByExtRefs(Collection<String> extRefs);
+    List<EventEntity> eventByExtRef(String extRef);
+    List<EventEntity> minimalEventDataByExtRefs(Collection<String> extRefs);
 
 }

@@ -1,6 +1,7 @@
 package com.thoongatechies.dmc.core.dao;
 
-import com.thoongatechies.require.dm.entity.CallbackDataEntity;
+
+import com.thoongatechies.dmc.core.entity.CallbackDataEntity;
 
 import java.util.List;
 

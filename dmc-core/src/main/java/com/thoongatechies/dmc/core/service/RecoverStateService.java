@@ -2,7 +2,6 @@ package com.thoongatechies.dmc.core.service;
 
 import com.thoongatechies.require.dm.dao.CallbackDataDao;
 import com.thoongatechies.require.dm.dao.EventDao;
-import com.thoongatechies.require.dm.entity.EventEntity;
 import com.thoongatechies.require.dm.entity.EventInstanceEntity;
 import com.thoongatechies.require.dm.reactive.EventPublisher;
 import com.thoongatechies.require.dm.reactive.handlers.EventInstanceHandler;
