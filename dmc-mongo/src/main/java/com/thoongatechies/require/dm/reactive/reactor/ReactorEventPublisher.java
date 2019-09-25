@@ -25,9 +25,13 @@ public class ReactorEventPublisher implements EventPublisher {
     @Qualifier("WORKQUEUE")
     private Reactor workQueue;
 
+    @Inject
+    private IncomingEventListener eventListener;
+
     @Override
     public void postIncomingEvent(EventEntity evt) {
-        workQueue.notify(evt.getClass(), Event.wrap(evt));
+//        workQueue.notify(evt.getClass(), Event.wrap(evt));
+        eventListener.accept(Event.wrap(evt));
     }
 
     @Override

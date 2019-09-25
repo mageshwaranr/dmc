@@ -68,6 +68,7 @@ public class EventInstanceHandler {
         String ruleId = evtInstance.getRuleId();
         RuleInstanceStateEntity state = stateRepo.findByRuleId(ruleId);
         RuleDefinitionEntity ruleDef = ruleDefinitionDao.findById(ruleId).get();
+        log.info("Processing {} for {}", evt.getName() + ":"+evt.getId(), ruleDef.getName());
         Spec spec = specService.parseSpec(ruleDef.getExpression(), Collections.emptyMap());
         Collection<TriggerGroup> matchedGroups = specService.evaluateSpec(evt, state, spec);
         stateRepo.update(state);

@@ -28,7 +28,10 @@ public class SpecGeneratorImpl implements SpecGenerator<String> {
     public Spec generate(String input, Map<String, URL> urlBindingMap) {
         return cachedSpec.computeIfAbsent(input, key -> {
             SpecBuilder builder = (SpecBuilder) MVEL.eval(key, singletonMap("Matcher",new DslBuilder()));
-            return builder.withUserProvidedSpec(key).withUrlBindingMap(urlBindingMap).build();
+            return builder
+                    .withUserProvidedSpec(key)
+                    .withUrlBindingMap(urlBindingMap)
+                    .build();
         });
     }
 }

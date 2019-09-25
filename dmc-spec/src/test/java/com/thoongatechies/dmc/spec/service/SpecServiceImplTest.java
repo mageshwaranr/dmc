@@ -76,20 +76,20 @@ public class SpecServiceImplTest {
 
         //test
         Trigger evt = newEvent("Account", toMap("LOADNAME","ASIA","BusinessDate","today","SomeK","SomeV"));
-        Collection<TriggerGroup> TriggerGroups = serviceImpl.evaluateSpec(evt,state,spec);
-        assertTrue(TriggerGroups.isEmpty());
+        Collection<TriggerGroup> triggerGroups = serviceImpl.evaluateSpec(evt,state,spec);
+        assertTrue(triggerGroups.isEmpty());
         assertEquals(1, state.getPendingTriggerGroups().size());
 
         evt = newEvent("Product", toMap("LOADNAME","ASIA","BusinessDate","yesterday","SomeK","SomeV"));
-        TriggerGroups = serviceImpl.evaluateSpec(evt, state, spec);
-        assertTrue(TriggerGroups.isEmpty());
+        triggerGroups = serviceImpl.evaluateSpec(evt, state, spec);
+        assertTrue(triggerGroups.isEmpty());
         assertEquals(2, state.getPendingTriggerGroups().size());
 
         evt = newEvent("Product", toMap("LOADNAME","ASIA","BusinessDate","today","SomeK","SomeV"));
-        TriggerGroups = serviceImpl.evaluateSpec(evt, state, spec);
-        assertFalse(TriggerGroups.isEmpty());
+        triggerGroups = serviceImpl.evaluateSpec(evt, state, spec);
+        assertFalse(triggerGroups.isEmpty());
         assertEquals(1, state.getPendingTriggerGroups().size());
-        assertEquals(1, TriggerGroups.size());
+        assertEquals(1, triggerGroups.size());
         //verify pending groups
         TriggerGroup TriggerGroup = state.getPendingTriggerGroups().stream().findFirst().get();
         assertEquals(2, TriggerGroup.getGroupedData().size());
@@ -97,7 +97,7 @@ public class SpecServiceImplTest {
         assertEquals("yesterday", TriggerGroup.getGroupedData().get("BusDate"));
         assertTrue(TriggerGroup.getEventsByName().containsKey("Product"));
         //verify processed groups
-        TriggerGroup = TriggerGroups.stream().findFirst().get();
+        TriggerGroup = triggerGroups.stream().findFirst().get();
         assertEquals(2, TriggerGroup.getGroupedData().size());
         assertEquals("ASIA", TriggerGroup.getGroupedData().get("LoadName"));
         assertEquals("today", TriggerGroup.getGroupedData().get("BusDate"));
@@ -110,10 +110,10 @@ public class SpecServiceImplTest {
 
 
         evt = newEvent("Account", toMap("LOADNAME","ASIA","BusinessDate","yesterday","SomeK","SomeV"));
-        TriggerGroups = serviceImpl.evaluateSpec(evt, state, spec);
-        assertFalse(TriggerGroups.isEmpty());
+        triggerGroups = serviceImpl.evaluateSpec(evt, state, spec);
+        assertFalse(triggerGroups.isEmpty());
         assertTrue(state.getPendingTriggerGroups().isEmpty());
-        assertEquals(1, TriggerGroups.size());
+        assertEquals(1, triggerGroups.size());
     }
 
     @Test

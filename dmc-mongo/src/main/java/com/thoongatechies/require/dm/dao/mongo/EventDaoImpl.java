@@ -43,7 +43,7 @@ public class EventDaoImpl implements EventDao {
             evt.setCreatedBy(DEPENDENCY_SYSTEM_USER);
         evt.setStatus(EVENT_STATUS_ACTIVE);
         template.save(evt);
-        log.debug("Saved incoming event {} with id {}", evt.getName(), evt.getId());
+        log.debug("Saved incoming event {} with id {}. Qualifiers are {}", evt.getName(), evt.getId(),evt.getHeaders());
     }
 
     @Override

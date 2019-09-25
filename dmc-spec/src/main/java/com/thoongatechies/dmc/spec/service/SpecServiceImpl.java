@@ -117,7 +117,7 @@ public class SpecServiceImpl implements SpecService {
         if(execExpression(spec,triggerTriggerGroup)){
             return Collections.singleton(collectProcessedTriggerGroups(state,triggerTriggerGroup, Optional.empty()));
         } else {
-            log.info("Condition didnt met yet. Trigger event {} is added to pending events",trigger.getName());
+            log.info("Condition didnt met yet. Trigger event {} with qualifier {} is added to pending events",trigger.getName(), trigger.getQualifier());
         }
         return Collections.emptyList();
     }

@@ -26,10 +26,12 @@ public class IncomingEventHandler {
     @Inject
     private EventRuleRelation ruleRelation;
 
-    @Inject private EventDao eventRepo;
+    @Inject
+    private EventDao eventRepo;
 
     /**
      * For incoming event, find all related rule defs. Create an instance at each rule level to track status at rule : event combination
+     *
      * @param evt
      * @return Event instances
      */
@@ -43,7 +45,9 @@ public class IncomingEventHandler {
     }
 
     private List<EventInstanceEntity> fanoutEvents(EventEntity evt) {
-        return ruleRelation.getRelatedRuleId(evt.getName())
+        final List<String> relatedRuleId = ruleRelation.getRelatedRuleId(evt.getName());
+        log.info("Event {} fanout nos. is {}", evt.getName() + ":" + evt.getId(), relatedRuleId.size());
+        return relatedRuleId
                 .stream()
                 .map(ruleId -> {
                     EventInstanceEntity toBeSaved = newEventInstance(ruleId, evt.getId());
