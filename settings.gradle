@@ -1,7 +1,8 @@
 rootProject.name = 'dmc'
 
-//include 'dmc-core'
+include 'dmc-core'
 include 'dmc-spec'
 include 'dmc-mongo'
+include 'dmc-persistence-mongo'
 
 

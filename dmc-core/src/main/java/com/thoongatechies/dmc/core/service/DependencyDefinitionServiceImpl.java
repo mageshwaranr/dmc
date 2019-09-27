@@ -1,13 +1,13 @@
 package com.thoongatechies.dmc.core.service;
 
+import com.thoongatechies.dmc.core.dao.RuleDefinitionDao;
+import com.thoongatechies.dmc.core.entity.CallbackDefinitionEntity;
+import com.thoongatechies.dmc.core.entity.RuleDefinitionEntity;
+import com.thoongatechies.dmc.core.entity.Sender;
+import com.thoongatechies.dmc.core.vo.CallbackDefinition;
+import com.thoongatechies.dmc.core.vo.RuleDefinition;
 import com.thoongatechies.dmc.spec.def.Spec;
 import com.thoongatechies.dmc.spec.service.SpecService;
-import com.thoongatechies.require.dm.dao.mongo.RuleDefinitionDaoImpl;
-import com.thoongatechies.require.dm.entity.CallbackDefinitionEntity;
-import com.thoongatechies.require.dm.entity.RuleDefinitionEntity;
-import com.thoongatechies.require.dm.entity.Sender;
-import com.thoongatechies.require.dm.vo.CallbackDefinition;
-import com.thoongatechies.require.dm.vo.RuleDefinition;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.thoongatechies.require.dm.entity.Constants.RULE_STATUS_ACTIVE;
+import static com.thoongatechies.dmc.core.entity.Constants.RULE_STATUS_ACTIVE;
 
 /**
  * Created by mages_000 on 09-Jun-16.
@@ -29,7 +29,7 @@ public class DependencyDefinitionServiceImpl implements DependencyDefinitionServ
     private ModelMapper mapper;
 
     @Inject
-    private RuleDefinitionDaoImpl ruleDefinitionDao;
+    private RuleDefinitionDao ruleDefinitionDao;
 
     @Inject
     private EventRuleRelation ruleRelation;
