@@ -5,6 +5,8 @@ import com.thoongatechies.require.dm.vo.CallbackDefinition;
 import com.thoongatechies.require.dm.vo.RuleDefinition;
 import com.thoongatechies.require.dm.reactive.config.EntityServiceURLConfig;
 import com.thoongatechies.require.dm.service.DependencyDefinitionService;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +26,7 @@ import static javax.ws.rs.core.MediaType.*;
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
 @Path("/v1/dependency/definition")
-//@Api(value="/v1/dependency/definition", description = "Operations related to Event Dependencies Management")
+@Api(value="/v1/dependency/definition", description = "Operations related to Event Dependencies Management")
 public class DependencyDefinitionResource {
     private Logger log = LoggerFactory.getLogger(getClass());
 
@@ -38,11 +40,11 @@ public class DependencyDefinitionResource {
 
     @POST
     @Path("/rule/validate")
-//    @ApiOperation(
-//            value="Validate te passed in rule construct. It can be a DSL or expression",
-//            notes = "In case of invalid rule, you get 404 with error message",
-//            response = Boolean.class
-//    )
+    @ApiOperation(
+            value="Validate te passed in rule construct. It can be a DSL or expression",
+            notes = "In case of invalid rule, you get 404 with error message",
+            response = Boolean.class
+    )
     public boolean validateRule(String expression) {
         return service.validateRule(expression);
     }

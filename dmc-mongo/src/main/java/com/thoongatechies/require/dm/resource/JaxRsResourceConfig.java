@@ -1,5 +1,7 @@
 package com.thoongatechies.require.dm.resource;
 
+import com.wordnik.swagger.jaxrs.listing.ApiListingResource;
+import com.wordnik.swagger.model.SwaggerSerializers;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import javax.inject.Named;

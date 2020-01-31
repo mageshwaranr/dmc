@@ -1,12 +1,13 @@
 package com.thoongatechies.dmc.core.service;
 
-import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.MultiMap;
+
+import com.thoongatechies.dmc.core.dao.RuleDefinitionDao;
+import com.thoongatechies.dmc.core.entity.RuleDefinitionEntity;
+import com.thoongatechies.dmc.core.processing.callback.EntityServiceURLConfig;
 import com.thoongatechies.dmc.spec.def.Spec;
 import com.thoongatechies.dmc.spec.service.SpecService;
-import com.thoongatechies.require.dm.dao.mongo.RuleDefinitionDaoImpl;
-import com.thoongatechies.require.dm.entity.RuleDefinitionEntity;
-import com.thoongatechies.require.dm.reactive.config.EntityServiceURLConfig;
+import org.eclipse.collections.api.multimap.MutableMultimap;
+import org.eclipse.collections.impl.factory.Multimaps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +17,8 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.thoongatechies.require.dm.entity.Constants.RULE_STATUS_ACTIVE;
+import static com.thoongatechies.dmc.core.entity.Constants.RULE_STATUS_ACTIVE;
+
 
 /**
  * Created by mages_000 on 6/2/2016.
@@ -29,25 +31,24 @@ public class EventRuleRelationImpl implements EventRuleRelation {
     @Inject
     private SpecService specService;
     @Inject
-    private RuleDefinitionDaoImpl ruleDao;
-    @Inject
-    private HazelcastInstance hz;
+    private RuleDefinitionDao ruleDao;
+
     @Inject
     private EntityServiceURLConfig urlConfig;
 
-    private MultiMap<String, String> eventNameToRuleIdMapping;
-    private MultiMap<String, String> ruleIdToEventNameMapping;
+    private MutableMultimap<String, String> eventNameToRuleIdMapping;
+    private MutableMultimap<String, String> ruleIdToEventNameMapping;
 
     @PostConstruct
     public void init() {
-        eventNameToRuleIdMapping = hz.getMultiMap("eventNameToRuleIdMapping");
-        ruleIdToEventNameMapping = hz.getMultiMap("ruleIdToEventNameMapping");
+        eventNameToRuleIdMapping = Multimaps.mutable.set.of();
+        ruleIdToEventNameMapping = Multimaps.mutable.set.of();
     }
 
     @Override
     public void initializeCache() {
         List<RuleDefinitionEntity> byStatus = ruleDao.findByStatus(RULE_STATUS_ACTIVE);
-        byStatus.stream().forEach(ruleDefinition -> {
+        byStatus.forEach(ruleDefinition -> {
             Spec spec = specService.parseSpec(ruleDefinition.getExpression(), urlConfig.getConfig());
             fillCache(spec, ruleDefinition.getId());
         });
@@ -69,7 +70,7 @@ public class EventRuleRelationImpl implements EventRuleRelation {
     public void removeRule(RuleDefinitionEntity rule) {
         String ruleId = rule.getId();
         ruleIdToEventNameMapping.get(ruleId).forEach(evtName -> eventNameToRuleIdMapping.remove(evtName, ruleId));
-        ruleIdToEventNameMapping.remove(ruleId);
+        ruleIdToEventNameMapping.removeAll(ruleId);
     }
 
     @Override

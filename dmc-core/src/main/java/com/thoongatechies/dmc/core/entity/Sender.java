@@ -1,8 +1,11 @@
 package com.thoongatechies.dmc.core.entity;
 
+import lombok.Data;
+
 /**
  * Created by mages_000 on 6/1/2016.
  */
+@Data
 public class Sender {
 
     private String name, uuid;
@@ -14,19 +17,4 @@ public class Sender {
         return sender;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
 }

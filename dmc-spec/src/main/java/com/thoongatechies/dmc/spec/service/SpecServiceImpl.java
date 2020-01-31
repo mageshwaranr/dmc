@@ -43,6 +43,8 @@ public class SpecServiceImpl implements SpecService {
         if (!isRelatedEvent) {
             log.info("Trigger event {} with qualifier {} doesn't qualifies for spec {}", trigger.getName(), trigger.getQualifier(), spec.name());
             return Collections.emptyList();
+        } else {
+            log.info("State used for evaluation is {}",state);
         }
 
         Collection<TriggerGroup> processedGroups;
@@ -117,16 +119,16 @@ public class SpecServiceImpl implements SpecService {
         if(execExpression(spec,triggerTriggerGroup)){
             return Collections.singleton(collectProcessedTriggerGroups(state,triggerTriggerGroup, Optional.empty()));
         } else {
-            log.info("Condition didnt met yet. Trigger event {} is added to pending events",trigger.getName());
+            log.info("Condition didnt met yet. Trigger event '{}' with qualifier '{}' is added to pending events ",trigger.getName(), trigger.getQualifier());
         }
         return Collections.emptyList();
     }
 
-    private TriggerGroup collectProcessedTriggerGroups(SpecExecutionState state, TriggerGroup triggerTriggerGroup, Optional<TriggerGroup> globalTriggerGroup) {
-        state.getPendingTriggerGroups().remove(triggerTriggerGroup);
-        globalTriggerGroup.ifPresent(gGroup -> gGroup.getEventsByName().forEach((evtName, mutableEvt) -> triggerTriggerGroup.addEvent(mutableEvt)));
-        log.info("Condition met for {}. Grouped events are marked as processed");
-        return triggerTriggerGroup;
+    private TriggerGroup collectProcessedTriggerGroups(SpecExecutionState state, TriggerGroup processedTriggerGroup, Optional<TriggerGroup> globalTriggerGroup) {
+        state.setTriggerGroupAsProcessed(processedTriggerGroup);
+        globalTriggerGroup.ifPresent(gGroup -> gGroup.getEventsByName().forEach((evtName, mutableEvt) -> processedTriggerGroup.addEvent(mutableEvt)));
+        log.info("Condition met for {}. Grouped events are marked as processed",processedTriggerGroup);
+        return processedTriggerGroup;
     }
 
     private Collection<TriggerGroup> selectByMatchingPartialContents(Set<TriggerGroup> TriggerGroups, Map<String, Object> partialData) {

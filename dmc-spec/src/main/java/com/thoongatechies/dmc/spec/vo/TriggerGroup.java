@@ -1,15 +1,19 @@
 package com.thoongatechies.dmc.spec.vo;
 
+import lombok.*;
+
 import java.util.*;
 
 
 /**
  * Created by mageshwaranr on 7/24/2016.
- *
+ * <p>
  * Triggers grouped by fields stored in groupedData.
- *
- *
  */
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(of = "id")
 public class TriggerGroup {
 
     private Map<String, Trigger> eventsByName = new HashMap<>();
@@ -18,6 +22,15 @@ public class TriggerGroup {
 
     private Map<String, Object> groupedData, responseContext;
 
+    private String id ;
+
+    public TriggerGroup() {
+        this(UUID.randomUUID().toString());
+    }
+
+    public TriggerGroup(String id) {
+        this.id = id;
+    }
 
     /*methods used in spec*/
     public void addEvent(Trigger event) {
@@ -30,54 +43,20 @@ public class TriggerGroup {
         return allEventsByName.containsKey(eventName);
     }
 
-    public Map<String,Object> qualifier(String eventName){
+    public Map<String, Object> qualifier(String eventName) {
         List<Trigger> events = allEventsByName.getOrDefault(eventName, Collections.emptyList());
-        if(events.isEmpty())
+        if (events.isEmpty())
             return Collections.emptyMap();
         else
-            return events.get(events.size() -1).getQualifier();
+            return events.get(events.size() - 1).getQualifier();
     }
 
-    public long currentTime(){
+    public long currentTime() {
         return System.currentTimeMillis();
     }
 
-    public boolean isGlobalGroup(){
+    public boolean isGlobalGroup() {
         return false;
-    }
-
-    /*Getter and setter*/
-
-    public Map<String, List<Trigger>> getAllEventsByName(){
-        return allEventsByName;
-    }
-
-    public Map<String, Trigger> getEventsByName() {
-        return eventsByName;
-    }
-
-    public void setEventsByName(Map<String, Trigger> eventsByName) {
-        this.eventsByName = eventsByName;
-    }
-
-    public static Trigger getNullEvent() {
-        return nullEvent;
-    }
-
-    public Map<String, Object> getGroupedData() {
-        return groupedData;
-    }
-
-    public void setGroupedData(Map<String, Object> groupedData) {
-        this.groupedData = groupedData;
-    }
-
-    public Map<String, Object> getResponseContext() {
-        return responseContext;
-    }
-
-    public void setResponseContext(Map<String, Object> responseContext) {
-        this.responseContext = responseContext;
     }
 
 }

@@ -1,7 +1,11 @@
 package com.thoongatechies.dmc.core.service;
 
-import com.thoongatechies.require.dm.entity.RuleInstanceStateEntity;
-import com.thoongatechies.require.dm.entity.Sender;
+
+import com.thoongatechies.dmc.core.entity.RuleInstanceStateEntity;
+import com.thoongatechies.dmc.core.entity.Sender;
+import com.thoongatechies.dmc.core.vo.CallbackData;
+import com.thoongatechies.dmc.core.vo.Event;
+import com.thoongatechies.dmc.core.vo.Relationship;
 
 import java.util.List;
 

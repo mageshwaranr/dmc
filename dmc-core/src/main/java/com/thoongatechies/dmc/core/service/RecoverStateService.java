@@ -1,10 +1,11 @@
 package com.thoongatechies.dmc.core.service;
 
-import com.thoongatechies.require.dm.dao.CallbackDataDao;
-import com.thoongatechies.require.dm.dao.EventDao;
-import com.thoongatechies.require.dm.entity.EventInstanceEntity;
-import com.thoongatechies.require.dm.reactive.EventPublisher;
-import com.thoongatechies.require.dm.reactive.handlers.EventInstanceHandler;
+
+import com.thoongatechies.dmc.core.dao.CallbackDataDao;
+import com.thoongatechies.dmc.core.dao.EventDao;
+import com.thoongatechies.dmc.core.entity.EventInstanceEntity;
+import com.thoongatechies.dmc.core.processing.EventPublisher;
+import com.thoongatechies.dmc.core.processing.handler.EventInstanceHandler;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;

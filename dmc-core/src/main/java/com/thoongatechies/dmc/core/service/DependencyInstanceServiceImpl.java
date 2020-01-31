@@ -1,18 +1,18 @@
 package com.thoongatechies.dmc.core.service;
 
-import com.thoongatechies.require.dm.dao.CallbackDataDao;
-import com.thoongatechies.require.dm.dao.EventDao;
-import com.thoongatechies.require.dm.dao.RuleInstanceStateDao;
-import com.thoongatechies.require.dm.dao.mongo.RuleDefinitionDaoImpl;
-import com.thoongatechies.require.dm.entity.CallbackDataEntity;
-import com.thoongatechies.require.dm.entity.EventEntity;
-import com.thoongatechies.require.dm.entity.RuleInstanceStateEntity;
-import com.thoongatechies.require.dm.entity.Sender;
-import com.thoongatechies.require.dm.reactive.EventPublisher;
-import com.thoongatechies.require.dm.reactive.handlers.CallbackDataHandler;
-import com.thoongatechies.require.dm.vo.CallbackData;
-import com.thoongatechies.require.dm.vo.Event;
-import com.thoongatechies.require.dm.vo.Relationship;
+import com.thoongatechies.dmc.core.dao.CallbackDataDao;
+import com.thoongatechies.dmc.core.dao.EventDao;
+import com.thoongatechies.dmc.core.dao.RuleDefinitionDao;
+import com.thoongatechies.dmc.core.dao.RuleInstanceStateDao;
+import com.thoongatechies.dmc.core.entity.CallbackDataEntity;
+import com.thoongatechies.dmc.core.entity.EventEntity;
+import com.thoongatechies.dmc.core.entity.RuleInstanceStateEntity;
+import com.thoongatechies.dmc.core.entity.Sender;
+import com.thoongatechies.dmc.core.processing.EventPublisher;
+import com.thoongatechies.dmc.core.processing.handler.CallbackDataHandler;
+import com.thoongatechies.dmc.core.vo.CallbackData;
+import com.thoongatechies.dmc.core.vo.Event;
+import com.thoongatechies.dmc.core.vo.Relationship;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -30,7 +30,7 @@ public class DependencyInstanceServiceImpl implements DependencyInstanceService 
     @Inject
     private EventDao eventRepository;
     @Inject private CallbackDataDao callbacksRepository;
-    @Inject private RuleDefinitionDaoImpl ruleDao;
+    @Inject private RuleDefinitionDao ruleDao;
     @Inject private CallbackDataHandler callbackDataHandler;
     @Inject private RuleInstanceStateDao barrierStateRepository;
     @Inject private ModelMapper mapper;

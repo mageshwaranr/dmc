@@ -1,5 +1,7 @@
 package com.thoongatechies.dmc.spec.def;
 
+import com.thoongatechies.dmc.spec.def.dsl.builder.DslBuilder;
+
 import java.net.URL;
 import java.util.Map;
 
@@ -48,4 +50,8 @@ public interface SpecBuilder {
     //actual spec
     SpecBuilder withUserProvidedSpec(String userProvidedSpec);
     SpecBuilder withUrlBindingMap(Map<String, URL> urlBindingMap);
+
+    static SpecBuilder newBuilder(){
+        return new DslBuilder();
+    }
 }

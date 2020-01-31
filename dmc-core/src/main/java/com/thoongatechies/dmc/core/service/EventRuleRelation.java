@@ -1,7 +1,7 @@
 package com.thoongatechies.dmc.core.service;
 
+import com.thoongatechies.dmc.core.entity.RuleDefinitionEntity;
 import com.thoongatechies.dmc.spec.def.Spec;
-import com.thoongatechies.require.dm.entity.RuleDefinitionEntity;
 
 import java.util.List;
 

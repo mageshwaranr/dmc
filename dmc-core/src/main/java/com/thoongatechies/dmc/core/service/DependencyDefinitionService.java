@@ -1,8 +1,9 @@
 package com.thoongatechies.dmc.core.service;
 
-import com.thoongatechies.require.dm.entity.Sender;
-import com.thoongatechies.require.dm.vo.CallbackDefinition;
-import com.thoongatechies.require.dm.vo.RuleDefinition;
+
+import com.thoongatechies.dmc.core.entity.Sender;
+import com.thoongatechies.dmc.core.vo.CallbackDefinition;
+import com.thoongatechies.dmc.core.vo.RuleDefinition;
 
 import java.util.List;
 
